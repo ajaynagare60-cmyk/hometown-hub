@@ -12,10 +12,8 @@ function Login({ onLogin }) {
     setMessage("Logging in...");
 
     try {
-      const API_URL = import.meta.env.VITE_API_URL;
-
       const response = await fetch(
-        `${API_URL}/api/auth/login`,
+        "https://hometown-hub-backend-o2w4.onrender.com/api/auth/login",
         {
           method: "POST",
           headers: {
@@ -35,7 +33,6 @@ function Login({ onLogin }) {
         return;
       }
 
-      // Save JWT token
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
 
@@ -49,11 +46,11 @@ function Login({ onLogin }) {
   };
 
   return (
-    <div>
+    <div className="login-container">
       <h1>Hometown Hub</h1>
       <h2>Login</h2>
 
-      <form onSubmit={handleLogin}>
+      <form className="login-form" onSubmit={handleLogin}>
         <input
           type="email"
           placeholder="Enter your email"
@@ -73,7 +70,7 @@ function Login({ onLogin }) {
         <button type="submit">Login</button>
       </form>
 
-      {message && <p>{message}</p>}
+      {message && <p className="login-message">{message}</p>}
     </div>
   );
 }
