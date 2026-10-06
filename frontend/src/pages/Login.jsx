@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Login.css";
 
 function Login({ onLogin }) {
   const [email, setEmail] = useState("");
@@ -11,8 +12,10 @@ function Login({ onLogin }) {
     setMessage("Logging in...");
 
     try {
+      const API_URL = import.meta.env.VITE_API_URL;
+
       const response = await fetch(
-        "http://localhost:5000/api/auth/login",
+        `${API_URL}/api/auth/login`,
         {
           method: "POST",
           headers: {
